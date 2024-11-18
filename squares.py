@@ -56,8 +56,8 @@ if __name__ == "__main__":
     # this creates an instance of parser
     parser = argparse.ArgumentParser(description="")
     # creates some argument you can use when running the file
-    parser.add_argument("numbers_strings", type=str)
-    parser.add_argument("--weight", type = str)
+    parser.add_argument("numbers_strings",type=str)
+    parser.add_argument("--weight", type = str,default=None)
     # set the value of the argument parsed in so it can be accessed later
     args = parser.parse_args()
 
@@ -65,8 +65,9 @@ if __name__ == "__main__":
     #weight_strings = ["1","1","1"]        
     
     numbers = convert_numbers(args.numbers_strings)
-    weights = convert_numbers(args.weight_strings)
+    if args.weights:
+        weights = convert_numbers(args.weight_strings)
     
-    result = average_of_squares(numbers, weights)
+    result = average_of_squares(numbers, args.weights)
     
     print(result)
